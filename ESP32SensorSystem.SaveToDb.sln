@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESP32SensorSystem.SaveToDb", "ESP32SensorSystem.SaveToDb\ESP32SensorSystem.SaveToDb.csproj", "{3ABF085A-2BEF-4C34-8D0E-C5E30F8FC707}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESP32SensorSystem.SaveToDbTests", "ESP32SensorSystem.SaveToDbTests\ESP32SensorSystem.SaveToDbTests.csproj", "{A4641E18-58AB-45A5-8868-927EE6F502DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3ABF085A-2BEF-4C34-8D0E-C5E30F8FC707}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ABF085A-2BEF-4C34-8D0E-C5E30F8FC707}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ABF085A-2BEF-4C34-8D0E-C5E30F8FC707}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ABF085A-2BEF-4C34-8D0E-C5E30F8FC707}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4641E18-58AB-45A5-8868-927EE6F502DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4641E18-58AB-45A5-8868-927EE6F502DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4641E18-58AB-45A5-8868-927EE6F502DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4641E18-58AB-45A5-8868-927EE6F502DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

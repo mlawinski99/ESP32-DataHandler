@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "ESP32SensorSystem.SaveToDb": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7190",
+      "launchBrowser": false
+    }
+  }
+}
