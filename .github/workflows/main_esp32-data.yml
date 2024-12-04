@@ -36,18 +36,18 @@ jobs:
         shell: bash
         run: |
           dotnet restore
-
-      - name: 'Run Unit Tests'
-        shell: bash
-        run: |
-          dotnet test ESP32SensorSystem.SaveToDbTests/ESP32SensorSystem.SaveToDbTests.csproj --no-build --verbosity normal
-
+          
       - name: 'Build Project'
         shell: bash
         run: |
           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
           dotnet build --configuration Release --output ./output
           popd
+
+      - name: 'Run Unit Tests'
+        shell: bash
+        run: |
+          dotnet test
 
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
