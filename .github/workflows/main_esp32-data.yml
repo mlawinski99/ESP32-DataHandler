@@ -10,8 +10,8 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
-  DOTNET_VERSION: '8.0.x' # set this to the dotnet version to use
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
+  DOTNET_VERSION: '8.0.x'
 
 jobs:
   build-and-deploy:
@@ -25,7 +25,24 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - name: 'Resolve Project Dependencies Using Dotnet'
+    #  - name: 'Resolve Project Dependencies Using Dotnet'
+    #    shell: bash
+    #    run: |
+    #      pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+    #      dotnet build --configuration Release --output ./output
+    #      popd
+
+      - name: 'Restore Dependencies for All Projects'
+        shell: bash
+        run: |
+          dotnet restore
+
+      - name: 'Run Unit Tests'
+        shell: bash
+        run: |
+          dotnet test ESP32SensorSystem.SaveToDbTests/ESP32SensorSystem.SaveToDbTests.csproj --no-build --verbosity normal
+
+      - name: 'Build Project'
         shell: bash
         run: |
           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
