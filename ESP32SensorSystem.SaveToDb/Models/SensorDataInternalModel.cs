@@ -1,4 +1,4 @@
-namespace ESP32SensorSystem.SaveToDb.Entities;
+namespace ESP32SensorSystem.SaveToDb.Models;
 
 public class SensorDataInternalModel
 {

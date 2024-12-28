@@ -10,6 +10,6 @@ public record Entity<T>
     [JsonProperty("body")]
     public T Body { get; set; }
     
-    [JsonProperty("measurementTime")]
+    [JsonProperty("MeasurementTime")]
     public string MeasurementTime { get; set; }
 }
