@@ -99,16 +99,19 @@ public class SaveToDbTests
                 x.SaveAsync(It.IsAny<SensorDataInternalModel>()))
             .ThrowsAsync(new Exception(exceptionMessage));
 
-        // Act, Assert
-        await Assert.ThrowsAsync<Exception>(() => _function.Run(request));
+        // Act
+        var result = await _function.Run(request);
 
+        // Assert
         _mockLogger.Verify(
             x => x.Log(
                 LogLevel.Error,
                 It.IsAny<EventId>(),
                 It.Is<It.IsAnyType>((v, t) => v.ToString().Contains(exceptionMessage)),
                 It.IsAny<Exception>(),
-                It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), 
+                It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)),
             Times.Once);
+        
+        Assert.IsType<BadRequestResult>(result);
     }
 }
