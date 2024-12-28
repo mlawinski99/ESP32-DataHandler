@@ -1,11 +1,15 @@
-using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace ESP32SensorSystem.SaveToDb.Entities;
 
-public abstract class Entity
+public record Entity<T>
 {
-    [Key]
-    public long Id { get; set; }
-
-    public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
+    [JsonProperty("id")]
+    public string Id { get; set; } = Guid.NewGuid().ToString();
+    
+    [JsonProperty("body")]
+    public T Body { get; set; }
+    
+    [JsonProperty("measurementTime")]
+    public string MeasurementTime { get; set; }
 }

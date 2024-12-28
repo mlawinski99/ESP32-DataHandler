@@ -17,7 +17,7 @@ public class SaveToDb(ILogger<SaveToDb> logger, ICosmosDbService cosmosDbService
         try
         {
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            var data = JsonHelper.Deserialize<SensorDataModel>(requestBody);
+            var data = JsonHelper.Deserialize<SensorDataExternalModel>(requestBody);
 
             if (data.HasDefaultValues())
             {
@@ -32,7 +32,7 @@ public class SaveToDb(ILogger<SaveToDb> logger, ICosmosDbService cosmosDbService
         catch (Exception ex)
         {
             logger.LogError(ex.Message);
-            throw;
+            return new BadRequestResult();
         }
     }
 }

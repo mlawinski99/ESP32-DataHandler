@@ -27,7 +27,7 @@ public class SaveToDbTests
     public async Task Run_ReturnsOkResult_WhenDataIsValid()
     {
         // Arrange
-        var sensorData = new SensorDataModel
+        var sensorData = new SensorDataExternalModel
         {
             Time = "2024-10-01T12:00:00Z",
             TempIn = 20.0f,
@@ -44,7 +44,7 @@ public class SaveToDbTests
         var request = httpContext.Request;
 
         _mockCosmosDbService.Setup(x => 
-                x.SaveAsync(It.IsAny<SensorMeasurement>()))
+                x.SaveAsync(It.IsAny<SensorDataInternalModel>()))
             .Returns(Task.CompletedTask);
 
         // Act
@@ -53,7 +53,7 @@ public class SaveToDbTests
         // Assert
         var okResult = Assert.IsType<OkObjectResult>(result);
         Assert.Equal("Data saved successfully", okResult.Value);
-        _mockCosmosDbService.Verify(x => x.SaveAsync(It.IsAny<SensorMeasurement>()), Times.Once);
+        _mockCosmosDbService.Verify(x => x.SaveAsync(It.IsAny<SensorDataInternalModel>()), Times.Once);
     }
     
     [Fact]
@@ -77,7 +77,7 @@ public class SaveToDbTests
     public async Task Run_LogsError_WhenExceptionIsThrown()
     {
         // Arrange
-        var sensorData = new SensorDataModel 
+        var sensorData = new SensorDataExternalModel 
         {
             Time = "2024-10-01T12:00:00Z",
             TempIn = 20.0f,
@@ -96,7 +96,7 @@ public class SaveToDbTests
 
         var exceptionMessage = "Error saving to DB";
         _mockCosmosDbService.Setup(x => 
-                x.SaveAsync(It.IsAny<SensorMeasurement>()))
+                x.SaveAsync(It.IsAny<SensorDataInternalModel>()))
             .ThrowsAsync(new Exception(exceptionMessage));
 
         // Act, Assert

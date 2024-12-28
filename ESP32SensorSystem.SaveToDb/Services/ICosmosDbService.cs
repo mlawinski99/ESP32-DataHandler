@@ -4,5 +4,5 @@ namespace ESP32SensorSystem.SaveToDb.Services;
 
 public interface ICosmosDbService
 {
-    Task SaveAsync(SensorMeasurement measurement);
+    Task SaveAsync(SensorDataInternalModel dataInternalModel);
 }

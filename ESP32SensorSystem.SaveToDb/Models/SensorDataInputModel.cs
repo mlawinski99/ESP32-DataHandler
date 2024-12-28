@@ -2,7 +2,7 @@ using ESP32SensorSystem.SaveToDb.Entities;
 
 namespace ESP32SensorSystem.SaveToDb.Models;
 
-public class SensorDataModel
+public class SensorDataExternalModel
 {
     public float TempIn { get; set; }
     public float TempOut { get; set; }
@@ -21,16 +21,16 @@ public class SensorDataModel
                Time == default;
     }
     
-    public SensorMeasurement ToSensorMeasurement()
+    public SensorDataInternalModel ToSensorMeasurement()
     {
-        return new SensorMeasurement
+        return new SensorDataInternalModel
         {
             TemperatureInside = TempIn,
             TemperatureOutside = TempOut,
             HumidityInside = HumidityIn,
             HumidityOutside = HumidityOut,
             Pressure = Pressure,
-            MeasurementTime = DateTime.Parse(Time)
+            MeasurementTime = DateTime.Parse(Time).ToString("o")
         };
     }
 }
